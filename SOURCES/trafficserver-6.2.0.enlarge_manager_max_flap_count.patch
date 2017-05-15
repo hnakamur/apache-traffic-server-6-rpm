@@ -1,0 +1,11 @@
+--- trafficserver-6.2.0/cmd/traffic_cop/traffic_cop.cc.orig	2016-07-11 23:03:32.000000000 +0000
++++ trafficserver-6.2.0/cmd/traffic_cop/traffic_cop.cc	2017-05-15 04:39:16.914501458 +0000
+@@ -116,7 +116,7 @@
+ // traffic_manager flap detection
+ #define MANAGER_FLAP_DETECTION 1
+ #if defined(MANAGER_FLAP_DETECTION)
+-#define MANAGER_MAX_FLAP_COUNT 3                            // if flap this many times, give up for a while
++#define MANAGER_MAX_FLAP_COUNT 30                           // if flap this many times, give up for a while
+ #define MANAGER_FLAP_INTERVAL_MSEC 60000                    // if x number of flaps happen in this interval, declare flapping
+ #define MANAGER_FLAP_RETRY_MSEC 60000                       // if flapping, don't try to restart until after this retry duration
+ static bool manager_flapping                       = false; // is the manager flapping?
