@@ -6,7 +6,7 @@
 Summary:	Fast, scalable and extensible HTTP/1.1 compliant caching proxy server
 Name:		trafficserver
 Version:	6.2.0
-Release:	2%{?dist}
+Release:	3%{?dist}
 License:	ASL 2.0
 Group:		System Environment/Daemons
 URL:		http://trafficserver.apache.org/index.html
@@ -21,6 +21,7 @@ Patch1:		trafficserver-init_scripts.patch
 
 Patch101:	trafficserver-6.2.0-require-s-maxage.patch
 Patch102:	trafficserver-6.2.0.return_stale_cache_with_s_maxage.patch
+Patch103:	trafficserver-6.2.0.enlarge_cop_manager_server_timeout.patch
 
 # BuildRoot is only needed for EPEL5:
 BuildRoot:	%(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
@@ -81,6 +82,7 @@ The trafficserver-perl package contains perl bindings.
 %patch1 -p1 -b .init
 %patch101 -p1
 %patch102 -p1
+%patch103 -p1
 
 %build
 NOCONFIGURE=1 autoreconf -vif
@@ -245,6 +247,9 @@ fi
 %{_libdir}/pkgconfig/trafficserver.pc
 
 %changelog
+* Mon May 15 2017 Hiroaki Nakamura <hnakamur@gmail.com> 6.2.0-3
+- Enlarge cop_manager_timeout and cop_server_timeout.
+
 * Fri Sep 30 2016 Hiroaki Nakamura <hnakamur@gmail.com> 6.2.0-2
 - Return stale cache even if the origin server response has
   "Cache-Control: s-maxage" header.
