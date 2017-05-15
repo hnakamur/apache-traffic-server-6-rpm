@@ -6,7 +6,7 @@
 Summary:	Fast, scalable and extensible HTTP/1.1 compliant caching proxy server
 Name:		trafficserver
 Version:	6.2.0
-Release:	3%{?dist}
+Release:	4%{?dist}
 License:	ASL 2.0
 Group:		System Environment/Daemons
 URL:		http://trafficserver.apache.org/index.html
@@ -22,6 +22,7 @@ Patch1:		trafficserver-init_scripts.patch
 Patch101:	trafficserver-6.2.0-require-s-maxage.patch
 Patch102:	trafficserver-6.2.0.return_stale_cache_with_s_maxage.patch
 Patch103:	trafficserver-6.2.0.enlarge_cop_manager_server_timeout.patch
+Patch104:	trafficserver-6.2.0.enlarge_manager_max_flap_count.patch
 
 # BuildRoot is only needed for EPEL5:
 BuildRoot:	%(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
@@ -83,6 +84,7 @@ The trafficserver-perl package contains perl bindings.
 %patch101 -p1
 %patch102 -p1
 %patch103 -p1
+%patch104 -p1
 
 %build
 NOCONFIGURE=1 autoreconf -vif
@@ -247,6 +249,9 @@ fi
 %{_libdir}/pkgconfig/trafficserver.pc
 
 %changelog
+* Mon May 15 2017 Hiroaki Nakamura <hnakamur@gmail.com> 6.2.0-4
+- Enlarge MANAGER_MAX_FLAP_COUNT
+
 * Mon May 15 2017 Hiroaki Nakamura <hnakamur@gmail.com> 6.2.0-3
 - Enlarge cop_manager_timeout and cop_server_timeout.
 
