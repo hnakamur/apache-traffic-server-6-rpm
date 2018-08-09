@@ -21,6 +21,7 @@ Patch1:		trafficserver-init_scripts.patch
 
 Patch101:	trafficserver-6.2.0-require-s-maxage.patch
 Patch102:	trafficserver-6.2.0.return_stale_cache_with_s_maxage.patch
+Patch103:       trafficserver-6.2.3-nullptr.patch
 
 # BuildRoot is only needed for EPEL5:
 BuildRoot:	%(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
@@ -81,6 +82,7 @@ The trafficserver-perl package contains perl bindings.
 %patch1 -p1 -b .init
 %patch101 -p1
 %patch102 -p1
+%patch103 -p1
 
 %build
 NOCONFIGURE=1 autoreconf -vif
