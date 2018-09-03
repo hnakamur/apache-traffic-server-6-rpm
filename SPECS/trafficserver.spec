@@ -6,7 +6,7 @@
 Summary:	Fast, scalable and extensible HTTP/1.1 compliant caching proxy server
 Name:		trafficserver
 Version:	6.2.3
-Release:	1%{?dist}
+Release:	2%{?dist}
 License:	ASL 2.0
 Group:		System Environment/Daemons
 URL:		http://trafficserver.apache.org/index.html
@@ -33,7 +33,11 @@ BuildRequires:	expat-devel
 BuildRequires:	gcc-c++
 BuildRequires:	gnupg
 BuildRequires:	hwloc-devel
+%if 0%{?centos} >= 7
+BuildRequires:	openssl-devel >= 1.0.2k
+%else
 BuildRequires:	openssl-devel
+%endif
 BuildRequires:	pcre-devel
 BuildRequires:	perl-ExtUtils-MakeMaker
 BuildRequires:	tcl-devel
@@ -247,6 +251,9 @@ fi
 %{_libdir}/pkgconfig/trafficserver.pc
 
 %changelog
+* Mon Sep 03 2018 Hiroaki Nakamura <hnakamur@gmail.com> 6.2.3-2
+- Requires OpenSSL 1.0.2k
+
 * Thu Aug 09 2018 Hiroaki Nakamura <hnakamur@gmail.com> 6.2.3-1
 - Update to 6.2.3
 
