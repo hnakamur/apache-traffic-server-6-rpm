@@ -6,7 +6,7 @@
 Summary:	Fast, scalable and extensible HTTP/1.1 compliant caching proxy server
 Name:		trafficserver
 Version:	6.2.3
-Release:	4%{?dist}
+Release:	5%{?dist}
 License:	ASL 2.0
 Group:		System Environment/Daemons
 URL:		http://trafficserver.apache.org/index.html
@@ -20,7 +20,7 @@ Source5:	trafficserver.tmpfilesd
 Patch1:		trafficserver-init_scripts.patch
 
 Patch101:	trafficserver-6.2.0-require-s-maxage.patch
-Patch102:	trafficserver-6.2.0.return_stale_cache_with_s_maxage.patch
+Patch102:	trafficserver-6.2.3.return_stale_cache_with_s_maxage.patch
 Patch103:       trafficserver-6.2.3-nullptr.patch
 
 # BuildRoot is only needed for EPEL5:
@@ -250,6 +250,10 @@ fi
 %{_libdir}/pkgconfig/trafficserver.pc
 
 %changelog
+* Mon Feb 25 2019 Hiroaki Nakamura <hnakamur@gmail.com> 6.2.3-5
+- Serve stale cache with s-maxage if
+  proxy.config.http.cache.required_headers is 99
+
 * Mon Sep 03 2018 Hiroaki Nakamura <hnakamur@gmail.com> 6.2.3-4
 - Fix Requires instead of BuildRequires for OpenSSL 1.0.2k
 
